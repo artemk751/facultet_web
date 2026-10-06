@@ -1,4 +1,3 @@
-"""Крок 1. Дані з таблиці деканату переносяться рівно як є (RunSQL), нічого не виправляємо."""
 from django.db import migrations
 
 TABLE = "exchange_exchangeprogram"
@@ -29,8 +28,6 @@ FORWARD = [
     "'Університет у Брно з сильними факультетами філософії та мистецтв і англомовними курсами.');",
 ]
 
-# До моменту відкату цієї міграції міграції 0003/0004 вже відкочені, але рядок university
-# відновлюється у вигляді "Назва, Країна", а не в оригінальному, тому шукаємо за початком назви.
 BACKWARD = [
     f"DELETE FROM {TABLE} WHERE "
     "university LIKE 'Uniwersytet Warszawski%' OR university LIKE 'KU Leuven%' "

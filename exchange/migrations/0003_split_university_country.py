@@ -1,8 +1,3 @@
-"""Крок 2. Поле university ділиться на назву (university) та країну (country).
-
-Країна в даних відокремлена трьома способами:
-  "Назва, Країна"   "Назва (Країна)"   "Назва - Країна"
-"""
 import re
 
 from django.db import migrations, models
@@ -18,7 +13,6 @@ def split_value(value):
         m = pattern.match(value)
         if m:
             return m.group("name").strip(), m.group("country").strip()
-    # Не вгадуємо: краще зупинити міграцію, ніж мовчки втратити країну.
     raise ValueError(f"Не вдалося розділити університет і країну: {value!r}")
 
 
@@ -30,7 +24,6 @@ def forwards(apps, schema_editor):
 
 
 def backwards(apps, schema_editor):
-    """Склеює назву й країну як "Назва, Країна". Оригінальний роздільник ("(...)", " - ") втрачається."""
     Program = apps.get_model("exchange", "ExchangeProgram")
     for p in Program.objects.all():
         if p.country:
