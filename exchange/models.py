@@ -20,6 +20,4 @@ class ExchangeProgram(models.Model):
 
     @property
     def is_open(self):
-        """Статус прийому обчислюється з дедлайну, а не зберігається (див. ANSWERS.md).
-        Дедлайн вважається включно: у день дедлайну подати заявку ще можна."""
         return self.deadline >= timezone.localdate()

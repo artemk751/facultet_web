@@ -14,5 +14,5 @@ python manage.py runserver
 ```
 python manage.py migrate exchange zero
 python manage.py migrate
-python manage.py makemigrations --check   # не має знаходити змін
+python manage.py makemigrations --check
 ```

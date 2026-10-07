@@ -64,7 +64,6 @@ class Teacher(models.Model):
 
 
 class HomePage(models.Model):
-    """Єдиний запис з текстом головної сторінки (редагується в адмінці)."""
 
     title = models.CharField("назва факультету", max_length=200)
     description = models.TextField("опис факультету")
