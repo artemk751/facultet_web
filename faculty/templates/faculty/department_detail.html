@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ department.name }}{% endblock %}
+{% block content %}
+<h1>{{ department.name }}</h1>
+<div class="card">
+  <p>Завідувач: {{ department.head }}</p>
+  {% if department.programs.all %}
+  <p>Випускає спеціальності:
+    {% for p in department.programs.all %}<a href="{% url 'faculty:program_detail' p.pk %}">{{ p.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+  {% endif %}
+</div>
+<h2>Викладачі</h2>
+<div class="grid">
+{% for t in department.teachers.all %}
+  <div class="card"><strong>{{ t.name }}</strong><br>
+    <span class="meta">{{ t.position }}{% if t.degree %}, {{ t.degree }}{% endif %}</span></div>
+{% empty %}<p>Викладачів поки немає.</p>{% endfor %}
+</div>
+{% endblock %}

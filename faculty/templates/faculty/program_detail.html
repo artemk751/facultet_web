@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ program.name }}{% endblock %}
+{% block content %}
+<h1>{{ program.name }} <span class="meta">({{ program.code }})</span></h1>
+<div class="card">
+  <p class="pre">{{ program.description }}</p>
+  <p class="meta">Координатор набору: {{ program.coordinator_name }}, {{ program.coordinator_contact }}</p>
+  <p class="meta">Випускова кафедра: <a href="{% url 'faculty:department_detail' program.department.pk %}">{{ program.department.name }}</a></p>
+</div>
+{% if program.subjects_list %}
+<div class="card"><h2>Дисципліни</h2>
+  <ul class="plain">{% for s in program.subjects_list %}<li>{{ s }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+{% endblock %}

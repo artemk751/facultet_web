@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Програми обміну{% endblock %}
+{% block content %}
+<h1>Програми академічного обміну</h1>
+<div class="filters">
+  <a href="{% url 'exchange:list' %}" {% if not current_country %}class="active"{% endif %}>Усі країни</a>
+  {% for c in countries %}
+    <a href="?country={{ c|urlencode }}" {% if c == current_country %}class="active"{% endif %}>{{ c }}</a>
+  {% endfor %}
+</div>
+{% for p in programs %}
+  <div class="card">
+    <h2>{{ p.university }}{% if p.country %} <span class="meta">· {{ p.country }}</span>{% endif %}
+      {% if p.is_open %}<span class="badge ok">Прийом триває</span>{% else %}<span class="badge closed">Прийом завершено</span>{% endif %}
+    </h2>
+    <p>{{ p.description }}</p>
+    <p class="meta">Мови навчання: {{ p.languages }} · Місць: {{ p.seats }} · Дедлайн: {{ p.deadline|date:"d.m.Y" }}</p>
+  </div>
+{% empty %}<p>Програм не знайдено.</p>{% endfor %}
+{% endblock %}

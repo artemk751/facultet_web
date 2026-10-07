@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+{% if page %}
+  <h1>{{ page.title }}</h1>
+  <div class="card pre">{{ page.description }}</div>
+  <div class="grid">
+    <div class="card"><h2>Основна інформація</h2><div class="pre">{{ page.info }}</div></div>
+    <div class="card"><h2>Контакти</h2><div class="pre">{{ page.contacts }}</div></div>
+  </div>
+{% else %}
+  <h1>Факультет</h1>
+  <p>Текст головної сторінки ще не додано в адмінці.</p>
+{% endif %}
+{% endblock %}
